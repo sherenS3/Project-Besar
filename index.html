@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesjid di Kota Bandung - WebGIS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <h2>Mesjid di Kota Bandung</h2>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#map" class="nav-link">Map</a></li>
+            <li><a href="#data" class="nav-link">Information</a></li>
+            <li><a href="#author-section" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Cari Informasi Mesjid</h1>
+            <p class="hero-subtitle">Temukan mesjid terbaik di Kota Bandung dengan fasilitas lengkap</p>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari nama mesjid..." class="search-bar">
+                <button class="search-btn" onclick="searchMosque()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <section id="map" class="map-section">
+        <div class="section-header">
+            <h2>Peta Persebaran Mesjid</h2>
+            <p>Eksplorasi lokasi mesjid di seluruh Kota Bandung</p>
+        </div>
+        <div class="map-container">
+            <div id="mosqueMap" class="map"></div>
+            <div class="map-controls">
+                <button class="map-btn" onclick="goHome()" title="Home">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="map-btn" onclick="getCurrentLocation()" title="Your Location">
+                    <i class="fas fa-location-arrow"></i>
+                </button>
+                <button class="map-btn" onclick="zoomIn()" title="Zoom In">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="map-btn" onclick="zoomOut()" title="Zoom Out">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="data" class="data-section">
+        <div class="section-header">
+            <h2>Data Mesjid</h2>
+            <p>Informasi lengkap mesjid-mesjid di Kota Bandung</p>
+        </div>
+        <div class="slider-container">
+            <button class="slider-btn prev-btn" onclick="prevSlide()">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="slider-wrapper">
+                <div class="slider" id="mosqueSlider">
+                    </div>
+            </div>
+            <button class="slider-btn next-btn" onclick="nextSlide()">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="slider-dots" id="sliderDots">
+            </div>
+    </section>
+
+    ---
+
+    <section id="author-section" class="author-section anti-mainstream">
+        <div class="author-container">
+            <div class="author-split-card">
+                <div class="author-left-side">
+                    <div class="author-photo-wrapper">
+                        <img src="./asset/serjop.jpg" alt="Serjop - Pengembang" class="author-photo">
+                        <div class="photo-overlay">
+                            <span class="overlay-text">The Creator</span>
+                        </div>
+                    </div>
+                    <div class="author-social-links">
+                        <a href="https://wa.me/6281572263782" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/sherens3_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="mailto:sherensalamah@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="author-right-side">
+                    <div class="author-intro">
+                        <p class="tagline">Di Balik Kode dan Peta...</p>
+                        <h2 class="author-name">Sheren S3</h2>
+                        <p class="author-title">Mahasiswa Sains Informasi Geografi, UPI</p>
+                    </div>
+
+                    <div class="author-story">
+                        <p>
+                            Berawal dari rasa ingin tahu yang tak terbatas dan kecintaan pada <span class="highlight">peta</span>, saya, Sheren, membangun WebGIS ini. Sebuah proyek tugas akhir WebGIS di Universitas Pendidikan Indonesia, yang bukan sekadar memenuhi syarat, melainkan wujud nyata kolaborasi antara geografi dan teknologi.
+                        </p>
+                        <p>
+                            Tujuan utama? Menjadikan informasi lokasi masjid di Kota Bandung lebih dari sekadar data, mengubahnya menjadi pengalaman visual yang <span class="highlight">mudah diakses dan interaktif</span>. Setiap titik di peta adalah bagian dari cerita, dan saya percaya, teknologi bisa menjadi jembatan antara kita dengan informasi yang berarti.
+                        </p>
+                    </div>
+
+                    <div class="project-philosophy">
+                        <h3>Filosofi Proyek</h3>
+                        <p>
+                            "Web ini dibuat untuk memenuhi tugas WebGIS dengan tema untuk memberikan informasi mengenai persebaran mesjid dan fasilitas yang ada di Kota Bandung."
+                        </p>
+                    </div>
+
+                    <div class="copyright">
+                        <p>&copy; 2024 Sheren S3. Semua Hak Cipta Dilindungi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    ---
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="mosqueData.js"></script>
+    <script src="main.js"></script>
+
+    
+</body>
+</html>
